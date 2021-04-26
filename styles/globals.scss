@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap');
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  
+  --black: #141015;
+  --white: #d0d0d0;
+  --darkgrey: #35323B;
+  --lightgrey: #585858;
+  --bleuvert: #25a8b5;
+}
+
+[data-theme="dark"] {
+  --text-color: hsl(0, 0%, 100%);
+  --text-color-light: hsl(0, 0%, 80%);
+  --bg-color: hsl(250, 9%, 14%);
+  --bg-color-light: hsl(250, 9%, 24%);
+  --card-bg: #141015;
+  --search-bg: hsl(250deg 9% 19%);
+}
+
+[data-theme="light"] {
+  --text-color: hsl(0, 0%, 10%);
+  --text-color-light: hsl(0, 0%, 20%);
+  --bg-color: hsl(0, 0%, 90%);
+  --bg-color-light: hsl(250, 9%, 24%);
+  --card-bg: white;
+  --search-bg: white;
+}
+
+body {   
+    background-color: var(--bg-color);
+    margin: 0 auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: var(--text-color-light);
+    font-weight: 400;
+  }
+  
+::placeholder {
+    color: var(--text-color);
+    font-family: 'Raleway', sans-serif;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/**************************************************
+  HEADER
+**************************************************/
+
+header {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 1200px;
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    display: inline-block;
+  }
+  h1, h2 {
+    margin: 0;
+  }
+  h2 {
+    font-size: .9em;
+    font-weight: 600;
+    color: var(--lightgrey);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      color: var(--bleuvert);
+      margin-right: 10px;
+      font-size: 1.5em;
+    }
+  }
+  span {
+    line-height: 1em;
+    &:first-child {
+      font-weight: 400;
+    }
+    &:last-child {
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--bleuvert)
+    }
+  }  
+}
+
+/**************************
+  THEME SWITCHER
+**************************/
+
+.theme-switcher {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  svg {
+    opacity: 0.8;
+    margin-left: .5em;
+    transition: .3s;
+    &.dark {
+      color: white;
+    }
+    &.light {
+      color: var(--darkgrey);
+    }
+    &.active {
+      font-size: 1.5em;
+      opacity: 1;
+    }
+  }
+}
+
+/**************************************************
+  CONTENT
+**************************************************/
+
+.page-content {
+  max-width: 1200px;
+  margin: 20px auto 80px;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/**************************************************
+  SEARCH
+**************************************************/
+
+.search-tips {
+  margin-bottom: 4rem;
+  display: grid;
+  place-items: center;
+  .search-input {
+    display: flex;
+    align-items: center;
+    width: 60vw;
+    background-color: var(--search-bg);
+    border-radius: 5px;
+    padding-left: 15px;
+    svg {
+      color: var(--text-color);
+      &.clear-search {
+        color: rgb(185, 19, 19);
+        padding-right: 1rem;
+        font-size: 2em;
+        transform: scale(1);
+        cursor: pointer;
+        transition: .2s;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+  input {
+    padding: 15px 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    width: 100%;
+  }
+}
+
+
+.filter-tips {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin-bottom: 30px;
+  .number {
+    color: var(--bleuvert);
+    font-style: italic;
+    font-size: 0.8em;
+    justify-self: end;
+    padding-right: 10px;
+  }
+  form {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 10px;
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
+    .filter-item {
+      display: flex;
+    }
+  }
+  .tag {
+    opacity: 0.5;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: .2s;
+  }
+  input {
+    display: none;
+    &:checked~.tag, &:hover~.tag {
+      opacity: 1;
+    }
+  }
+}
+
+/**************************************************
+  TIPS LIST
+**************************************************/
+
+.tips-list {
+  display: grid;
+  grid-gap: 1rem;
+}
+.tip-card {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  transition: .2s;
+  h2 {
+    font-size: 1em;
+    padding: 1em;
+    font-weight: 400;
+  }
+  .tags {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // > div {
+    //   margin-right: 5px !important;
+    // }
+    // img {
+    //   object-fit: contain;
+    //   margin-right: 5px;
+    // }
+  }
+  a {
+    margin-left: auto;
+    display: grid;
+    place-items: center;
+    padding: .5em 1.5em;
+    color: var(--bleuvert);
+    font-size: 1.5em;
+    transition: .3s;
+    &:hover {
+      color: white;
+    }
+  }
+}
+.tag {
+  font-size: 0.5em;
+  text-transform: capitalize;
+  padding: 2px 8px;
+  margin: 3px 0;
+  border-radius: 5px;
+  color: white;
+  &-all {
+    background-color: black;
+  }
+  &-css {
+    background-color: #116099;
+  }
+  &-javascript {
+    background-color: #b6a311;
+  }
+  &-php {
+    background-color: #858EBB;
+  }
+  &-wordpress {
+    background-color: #227397;
+  }
+  &-prestashop {
+    background-color: #D7036B;
+  }
+}
+
+/**************************
+  SINGLE TIP
+**************************/
+
+.single-tip {
+  h2 {
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: var(--text-color);
+  }
+  p {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: var(--bleuvert);
+    transition: .2s;
+    &:hover {
+      color: white;
+    }
+    svg {
+      margin-right: 5px;
+    }
+  }
+} 
+
+footer {
+  background: #111;
+  color: #bbb;
+  font-size: 1rem;
+  padding: 10px;
+  text-align: center;
+  margin-top: auto
+}
+
+
+
+
+/* The switch - the box around the slider */
+.theme-switcher .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  transform: scale(0.7);
+}
+
+/* Hide default HTML checkbox */
+.theme-switcher .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.theme-switcher .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--darkgrey);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.theme-switcher .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--bleuvert);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.theme-switcher input:checked + .slider {
+  background-color: var(--white);
+}
+
+.theme-switcher input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.theme-switcher .slider.round {
+  border-radius: 34px;
+}
+
+.theme-switcher .slider.round:before {
+  border-radius: 50%;
+}
